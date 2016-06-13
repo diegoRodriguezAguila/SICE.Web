@@ -1,0 +1,5 @@
+/db/helpdesk
+/vendor/*
+/config/app.php
+/tmp/*
+/logs/*
