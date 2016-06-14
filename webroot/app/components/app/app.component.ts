@@ -14,6 +14,7 @@ import { TodoComponent } from '../todo-list/todo-list.component';
   { path: '/status/:status', component: TodoComponent }
 ])
 export class AppComponent {
+  private author;
 
   constructor(@Inject('AUTHOR') author) {
     this.author = author;

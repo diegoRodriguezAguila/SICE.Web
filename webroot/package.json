@@ -4,20 +4,21 @@
   "main": "app/main.js",
   "scripts": {
     "start": "http-server -a 0.0.0.0 -p 9000",
-    "bundle": "webpack app/main.js app/dist/main.bundle.js --config webpack.config.js --watch -d"
+    "bundle": "webpack app/main.js app/dist/main.bundle.js --config webpack.config.js --watch -d",
+    "typings": "typings",
+    "postinstall": "typings install"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/blacksonic/angular2-esnext-todomvc.git"
   },
   "author": {
-    "name": "blacksonic",
-    "email": "soos.gabor86@gmail.com"
+    "name": "Diego Rodriguez",
+    "email": "diroag@gmail.com"
   },
-  "license": "ISC",
+  "license": "No",
   "keywords": [
     "angular2",
-    "todomvc",
     "es6"
   ],
   "description": "Angular 2 TodoMVC application in Javascript (ES6/ES7).",
