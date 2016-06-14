@@ -70,6 +70,7 @@ Router::defaultRouteClass('DashedRoute');
      * You can remove these routes once you've connected the
      * routes you want in your application.
      */
+
     Router::prefix('api', function ($routes) {
         $routes->extensions(['json', 'xml']);
         //$routes->connect('/:controller');

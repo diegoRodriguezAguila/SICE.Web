@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/sice_api.iml" filepath="$PROJECT_DIR$/.idea/sice_api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../sice_elfec/.idea/sice_elfec.iml" filepath="$PROJECT_DIR$/../sice_elfec/.idea/sice_elfec.iml" />
     </modules>
   </component>
 </project>

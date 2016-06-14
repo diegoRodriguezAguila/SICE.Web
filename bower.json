@@ -1,0 +1,22 @@
+{
+  "name": "sice_elfec",
+  "homepage": "https://github.com/diegoRodriguezAguila/SICE.Web",
+  "authors": [
+    "diegoRodriguezAguila <diroag@gmail.com>"
+  ],
+  "description": "System for Corporate Information about Outages",
+  "main": "",
+  "keywords": [
+    "sice",
+    "elfec"
+  ],
+  "license": "No",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
