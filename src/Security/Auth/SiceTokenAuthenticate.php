@@ -13,7 +13,7 @@ use Cake\Network\Request;
 use Cake\Network\Response;
 use Symfony\Component\Console\Logger\ConsoleLogger;
 
-class HelpdeskTokenAuthenticate extends BaseAuthenticate
+class SiceTokenAuthenticate extends BaseAuthenticate
 {
 
     /**
@@ -62,7 +62,7 @@ class HelpdeskTokenAuthenticate extends BaseAuthenticate
      * @return \Cake\Network\Response
      */
     private function unauthorizedResponse($response){
-        $response->statusCode(403);
+        $response->statusCode(401);
         $response->body(json_encode((object)['message' =>
             'Error al verificar el token de autorización, no tiene permiso para acceder a la aplicación', 'code' => 403]));
         return $response;

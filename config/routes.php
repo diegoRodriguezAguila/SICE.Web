@@ -74,7 +74,14 @@ Router::defaultRouteClass('DashedRoute');
     Router::prefix('api', function ($routes) {
         $routes->extensions(['json', 'xml']);
         //$routes->connect('/:controller');
+
+        $routes->resources('Sessions', [
+            'only' => ['create','delete'],
+            'actions' => ['create' => 'create', 'delete' => 'destroy'],
+            'id'=>'[0-9A-Za-z]+'
+        ]);
         $routes->resources('Requirements',['id'=>'[0-9A-Za-z]+']);
+
     });
     //$routes->fallbacks('DashedRoute');
 //});

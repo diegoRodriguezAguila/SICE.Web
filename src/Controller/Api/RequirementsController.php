@@ -49,7 +49,7 @@ class RequirementsController extends AppController
      * @param $id
      * @return \Cake\Network\Response|null
      */
-    public function delete($id)
+    public function destroy($id)
     {
         $this->response->statusCode(404);
         return $this->response;
