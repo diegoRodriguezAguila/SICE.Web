@@ -23,7 +23,6 @@ class SessionsController extends AppController
      */
     public function create()
     {
-        $this->response->type('json');
         $data = $this->request->input('json_decode');
         $session = SessionManager::authenticateUser($data);
         if (!$session)
