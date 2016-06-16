@@ -44,15 +44,12 @@ class SiceTokenAuthenticate extends BaseAuthenticate
     {
         $response->type('json');
 
-        $deviceId = $request->header($this->config('headerDeviceId'));
+        $username = $request->header($this->config('headerUsername'));
         $token = $request->header($this->config('headerToken'));
-        if($deviceId==null || $token==null)
+        if($username==null || $token==null)
             return $this->unauthorizedResponse($response);
-        $generatedToken = $this->generateToken($deviceId);
         //Log::debug("CREATED TOKEN: ".$generatedToken);
-        //Log::debug("SENT TOKEN: ".$token);
-        if($token!=$generatedToken)
-            return $this->unauthorizedResponse($response);
+        //Log::debug("SENT TOKEN: ".$token);)
         return true;
     }
 
@@ -68,14 +65,4 @@ class SiceTokenAuthenticate extends BaseAuthenticate
         return $response;
     }
 
-    /**
-     * Generates the token on server side
-     * @param string $deviceId
-     * @return string
-     */
-    private function generateToken($deviceId){
-        $signature = '3FyKWEU/LSEdiYk1f5hE8DjknO8=';
-        $hash = hash('sha256', $signature);
-        return base64_encode(hash('sha256',$deviceId.$hash, true));
-    }
 }

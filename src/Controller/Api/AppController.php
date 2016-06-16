@@ -28,8 +28,17 @@ class AppController extends Controller
 
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
-        $this->loadComponent('Auth', ['authenticate' => ['App/Security.SiceToken'=>['headerDeviceId'=>'X-Api-DeviceId',
-            'headerToken'=>'X-Api-Token']],
+        $this->loadComponent('Auth', ['authenticate' =>
+            ['ADmad/JwtAuth.Jwt' => [
+                'parameter' => 'token',
+                'userModel' => 'Sessions',
+                'fields' => [
+                    'username' => 'username'
+                ],
+                'scope' => ['Sessions.status' => 1],
+                'queryDatasource' => true
+            ]
+            ],'storage' => 'Memory',
             'checkAuthIn' => 'Controller.initialize',
             'loginAction' => false,
             'unauthorizedRedirect' => false]);

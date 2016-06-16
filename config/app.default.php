@@ -141,9 +141,9 @@ return [
     'Error' => [
         'errorLevel' => E_ALL & ~E_DEPRECATED,
         'exceptionRenderer' => 'Cake\Error\ExceptionRenderer',
+        'trace' => false,
         'skipLog' => [],
         'log' => true,
-        'trace' => true,
     ],
 
     /**
