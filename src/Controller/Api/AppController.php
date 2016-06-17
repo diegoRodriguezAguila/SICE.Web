@@ -58,4 +58,14 @@ class AppController extends Controller
             $this->set('_serialize', true);
         }
     }
+
+    /**
+     * Returns an empty response with 400 bad request
+     * status code
+     * @return \Cake\Network\Response|null
+     */
+    public function badRequestResponse(){
+        $this->response->statusCode(400);
+        return $this->response;
+    }
 }

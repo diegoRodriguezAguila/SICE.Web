@@ -3,6 +3,7 @@ namespace App\Controller\Api;
 
 use App\Controller\Api\AppController;
 use App\BusinessLogic\SessionManager;
+use Cake\Network\Exception\BadRequestException;
 use Cake\Network\Exception\UnauthorizedException;
 
 /**
@@ -36,12 +37,17 @@ class SessionsController extends AppController
 
     /**
      * No se utiliza este método
-     * @param $id
+     * @param $id string
      * @return \Cake\Network\Response|null
      */
     public function destroy($id)
     {
-        $this->response->statusCode(404);
+        $res = SessionManager::closeSession($id);
+        if(!$res)
+            return $this->badRequestResponse();
+        if(!empty($res->errors()))
+            return $this->errorSavingSessionResponse($res->errors());
+        $this->response->statusCode(204);
         return $this->response;
     }
 

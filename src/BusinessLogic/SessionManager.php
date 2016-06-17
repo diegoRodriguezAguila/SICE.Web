@@ -9,6 +9,8 @@
 namespace App\BusinessLogic;
 
 use App\Model\Entity\Session;
+use Cake\Error\Debugger;
+use Cake\Log\Log;
 use Cake\Network\Http\Client;
 use Cake\ORM\TableRegistry;
 use Cake\Utility\Security;
@@ -57,5 +59,31 @@ class SessionManager
         }
         $session->last_sign_in_at = time();
         return $sessions->save($session);
+    }
+
+    /**
+     * Closes a session by changin its state to 0 and deleting the auth token assigned
+     * @param $token string
+     * @return mixed boolean or Session, depending if session found
+     */
+    public static function closeSession($token)
+    {
+        $sessions = TableRegistry::get('Sessions');
+        $session = $sessions->find()->where(['authentication_token' => $token])->first();
+        if ($session == null)
+            return false;
+        $auth_token = JWT::decode($token, Security::salt(), ['HS256'])->authentication_token;
+        if ($auth_token == null)
+            return false;
+        $http = new Client();
+        $response = $http->delete(self::AD_WS_SERVER.$auth_token,
+            ['headers' => ['Content-Type' => 'application/json',
+                'Accept' => 'application/json']]);
+        if ($response->statusCode() == 400)
+            return false;
+        $session->authentication_token = 'no token';
+        $session->status = 0;
+        $sessions->save($session);
+        return $session;
     }
 }

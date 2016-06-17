@@ -78,7 +78,7 @@ Router::defaultRouteClass('DashedRoute');
         $routes->resources('Sessions', [
             'only' => ['create','delete'],
             'actions' => ['create' => 'create', 'delete' => 'destroy'],
-            'id'=>'[0-9A-Za-z]+'
+            'id'=>'[0-9A-Za-z\.]+'
         ]);
         $routes->resources('Requirements',['id'=>'[0-9A-Za-z]+']);
 
