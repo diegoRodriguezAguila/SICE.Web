@@ -80,6 +80,10 @@ Router::defaultRouteClass('DashedRoute');
             'actions' => ['create' => 'create', 'delete' => 'destroy'],
             'id'=>'[0-9A-Za-z\.]+'
         ]);
+
+        $routes->resources('ScheduledOutages', [
+            'only' => ['index','view', 'create']
+        ]);
         $routes->resources('Requirements',['id'=>'[0-9A-Za-z]+']);
 
     });

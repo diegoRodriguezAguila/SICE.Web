@@ -23,7 +23,7 @@ class SessionManager
     /**
      * Calls the AD api for user autentication
      * @param $data string of the request
-     * @return mixed App\Model\Entity\Session or false if there was an error on authentication
+     * @return Session|boolean false if there was an error on authentication
      */
     public static function authenticateUser($data)
     {
@@ -62,9 +62,9 @@ class SessionManager
     }
 
     /**
-     * Closes a session by changin its state to 0 and deleting the auth token assigned
+     * Closes a session by changing its state to 0 and deleting the auth token assigned
      * @param $token string
-     * @return mixed boolean or Session, depending if session found
+     * @return boolean|Session, depending if session found
      */
     public static function closeSession($token)
     {

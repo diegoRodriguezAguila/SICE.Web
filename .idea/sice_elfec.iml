@@ -7,6 +7,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/admad/cakephp-jwt-auth" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/aura/installer-default" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/aura/intl" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/bcrowe/cakephp-api-pagination" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/cakephp/bake" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/cakephp/cakephp" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/cakephp/debug_kit" />
@@ -54,6 +55,7 @@
           <root url="file://$MODULE_DIR$/vendor/admad/cakephp-jwt-auth" />
           <root url="file://$MODULE_DIR$/vendor/aura/installer-default" />
           <root url="file://$MODULE_DIR$/vendor/aura/intl" />
+          <root url="file://$MODULE_DIR$/vendor/bcrowe/cakephp-api-pagination" />
           <root url="file://$MODULE_DIR$/vendor/cakephp/bake" />
           <root url="file://$MODULE_DIR$/vendor/cakephp/cakephp" />
           <root url="file://$MODULE_DIR$/vendor/cakephp/debug_kit" />
@@ -84,6 +86,7 @@
           <root url="file://$MODULE_DIR$/vendor/admad/cakephp-jwt-auth" />
           <root url="file://$MODULE_DIR$/vendor/aura/installer-default" />
           <root url="file://$MODULE_DIR$/vendor/aura/intl" />
+          <root url="file://$MODULE_DIR$/vendor/bcrowe/cakephp-api-pagination" />
           <root url="file://$MODULE_DIR$/vendor/cakephp/bake" />
           <root url="file://$MODULE_DIR$/vendor/cakephp/cakephp" />
           <root url="file://$MODULE_DIR$/vendor/cakephp/debug_kit" />

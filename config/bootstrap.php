@@ -208,3 +208,6 @@ Plugin::load('Crud');
 Plugin::load('Migrations');
 
 Plugin::load('ADmad/JwtAuth');
+
+Plugin::load('BryanCrowe/ApiPagination');
+
