@@ -23,6 +23,9 @@ class CreatePowerPoles extends AbstractMigration
         $table->addColumn('condition', 'string', [
             'null' => true,
         ]);
+        $table->addColumn('owner', 'string', [
+            'null' => true,
+        ]);
         $table->addColumn('tension_type', 'string', [
             'null' => true,
         ]);
