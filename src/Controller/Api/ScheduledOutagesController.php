@@ -21,7 +21,16 @@ class ScheduledOutagesController extends AppController
     {
         parent::initialize();
         $this->loadComponent('Paginator');
-        $this->loadComponent('BryanCrowe/ApiPagination.ApiPagination');
+        $this->loadComponent('BryanCrowe/ApiPagination.ApiPagination',[
+            'visible' => [
+                'page',
+                'current',
+                'count',
+                'perPage',
+                'prevPage',
+                'nextPage'
+            ]
+        ]);
     }
 
     /**
@@ -31,8 +40,8 @@ class ScheduledOutagesController extends AppController
      */
     public function index()
     {
-        $this->set('scheduled_outages', $this->paginate($this->ScheduledOutages));
-        $this->set('_serialize', ['scheduled_outages']);
+        $this->set('data', $this->paginate($this->ScheduledOutages));
+        $this->set('_serialize', ['data']);
     }
 
     /**
@@ -65,8 +74,7 @@ class ScheduledOutagesController extends AppController
             } else {
             }
         }
-        $this->set(compact('scheduledOutage'));
-        $this->set('_serialize', ['scheduledOutage']);
+        $this->response->body(json_encode($scheduledOutage->jsonSerialize()));
         $this->response->statusCode(404);
         return $this->response;
     }
