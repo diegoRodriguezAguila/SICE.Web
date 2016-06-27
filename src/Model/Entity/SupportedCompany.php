@@ -4,22 +4,18 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * PowerPole Entity.
+ * SupportedCompany Entity.
  *
  * @property int $id
- * @property string $pole_code
- * @property string $material
- * @property string $condition
- * @property string $owner
- * @property string $tension_type
- * @property string $pole_type
- * @property float $latitude
- * @property float $longitude
- * @property int $status
+ * @property int $power_pole_id
+ * @property \App\Model\Entity\PowerPole $power_pole
+ * @property string $company
+ * @property string $support_type
+ * @property int $amount
  * @property \Cake\I18n\Time $created
  * @property \Cake\I18n\Time $modified
  */
-class PowerPole extends Entity
+class SupportedCompany extends Entity
 {
     protected $_hidden = ['created', 'modified'];
 

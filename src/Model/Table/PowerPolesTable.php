@@ -29,7 +29,9 @@ class PowerPolesTable extends Table
         $this->primaryKey('id');
 
         $this->addBehavior('Timestamp');
-
+        $this->hasMany('SupportedCompanies', [
+            'dependent' => true,
+        ]);
     }
 
     /**
