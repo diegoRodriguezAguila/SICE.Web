@@ -17,22 +17,6 @@ class ScheduledOutagesController extends AppController
         ]
     ];
 
-    public function initialize()
-    {
-        parent::initialize();
-        $this->loadComponent('Paginator');
-        $this->loadComponent('BryanCrowe/ApiPagination.ApiPagination',[
-            'visible' => [
-                'page',
-                'current',
-                'count',
-                'perPage',
-                'prevPage',
-                'nextPage'
-            ]
-        ]);
-    }
-
     /**
      * Index method
      *

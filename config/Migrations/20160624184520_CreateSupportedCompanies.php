@@ -29,6 +29,10 @@ class CreateSupportedCompanies extends AbstractMigration
             'default' => 0,
             'null' => false,
         ]);
+        $table->addColumn('status', 'integer', [
+            'default' => 1,
+            'null' => false,
+        ]);
         $table->addColumn('created', 'datetime', [
             'default' => null,
             'null' => false,

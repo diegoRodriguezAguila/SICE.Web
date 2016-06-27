@@ -42,6 +42,17 @@ class AppController extends Controller
             'checkAuthIn' => 'Controller.initialize',
             'loginAction' => false,
             'unauthorizedRedirect' => false]);
+        $this->loadComponent('Paginator');
+        $this->loadComponent('BryanCrowe/ApiPagination.ApiPagination',[
+            'visible' => [
+                'page',
+                'current',
+                'count',
+                'perPage',
+                'prevPage',
+                'nextPage'
+            ]
+        ]);
     }
 
     /**

@@ -84,6 +84,9 @@ Router::defaultRouteClass('DashedRoute');
         $routes->resources('ScheduledOutages', [
             'only' => ['index','view', 'create']
         ]);
+        $routes->resources('PowerPoles', [
+            'only' => ['index','view']
+        ]);
         $routes->resources('Requirements',['id'=>'[0-9A-Za-z]+']);
 
     });
