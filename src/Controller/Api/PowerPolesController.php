@@ -11,6 +11,13 @@ use App\Model\Table\SupportedCompaniesTable;
  */
 class PowerPolesController extends AppController
 {
+    public $paginate = [
+        'limit' => 25,
+        'order' => [
+            'ScheduledOutages.start_date' => 'asc'
+        ],
+        'contain' => ['SupportedCompanies']
+    ];
 
     /**
      * Index method
@@ -19,7 +26,12 @@ class PowerPolesController extends AppController
      */
     public function index()
     {
-        $this->set('data', $this->paginate($this->PowerPoles));
+        $powerPoles = $this->PowerPoles;
+        $poleCode = $this->request->query('pole_code');
+        if ($poleCode != null) {
+            $powerPoles = $powerPoles->find()->where(['pole_code LIKE' => "$poleCode%"]);
+        }
+        $this->set('data', $this->paginate($powerPoles));
         $this->set('_serialize', ['data']);
     }
 
