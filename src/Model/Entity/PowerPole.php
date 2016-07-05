@@ -21,7 +21,7 @@ use Cake\ORM\Entity;
  */
 class PowerPole extends Entity
 {
-    protected $_hidden = ['created', 'modified'];
+    protected $_hidden = ['created', 'modified', '_joinData'];
 
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
