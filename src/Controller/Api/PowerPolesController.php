@@ -29,7 +29,7 @@ class PowerPolesController extends AppController
         $powerPoles = $this->PowerPoles;
         $poleCode = $this->request->query('pole_code');
         if ($poleCode != null) {
-            $powerPoles = $powerPoles->find()->where(['pole_code LIKE' => "$poleCode%"]);
+            $powerPoles = $powerPoles->find()->where(['pole_code ILIKE' => "$poleCode%"]);
         }
         $this->set('data', $this->paginate($powerPoles));
         $this->set('_serialize', ['data']);
