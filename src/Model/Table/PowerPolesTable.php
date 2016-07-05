@@ -32,6 +32,10 @@ class PowerPolesTable extends Table
         $this->hasMany('SupportedCompanies', [
             'dependent' => true,
         ]);
+
+        $this->belongsToMany('ScheduledOutages', [
+            'joinTable' => 'scheduled_outages_power_poles',
+        ]);
     }
 
     /**

@@ -29,6 +29,9 @@ class ScheduledOutagesTable extends Table
         $this->primaryKey('id');
 
         $this->addBehavior('Timestamp');
+        $this->belongsToMany('PowerPoles', [
+            'joinTable' => 'scheduled_outages_power_poles',
+        ]);
 
     }
 

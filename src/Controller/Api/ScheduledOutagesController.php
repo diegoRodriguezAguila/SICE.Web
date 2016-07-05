@@ -59,7 +59,6 @@ class ScheduledOutagesController extends AppController
             }
         }
         $this->response->body(json_encode($scheduledOutage->jsonSerialize()));
-        $this->response->statusCode(404);
         return $this->response;
     }
 }
