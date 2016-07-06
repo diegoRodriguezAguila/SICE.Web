@@ -10,6 +10,8 @@ namespace App\BusinessLogic;
 
 use App\Model\Entity\Session;
 use Cake\Auth\DefaultPasswordHasher;
+use Cake\Error\Debugger;
+use Cake\Log\Log;
 use Cake\Network\Http\Client;
 use Cake\ORM\TableRegistry;
 use Cake\Utility\Security;
@@ -49,12 +51,15 @@ class SessionManager
      */
     public static function authenticateCompany($data)
     {
+        if(!isset($data->username) || !isset($data->registration_token))
+            return false;
         $hasher = new DefaultPasswordHasher();
         $companies = TableRegistry::get('Companies');
         /** @noinspection PhpUndefinedFieldInspection */
-        $company = $companies->find()->where(['username' => $data->username,
-            'registration_token' => $hasher->hash($data->registration_token)])->first();
+        $company = $companies->find()->where(['username' => $data->username, 'status' => 1])->first();
         if ($company == null)
+            return false;
+        if(!$hasher->check($data->registration_token, $company['registration_token']))
             return false;
         $user_data['sub'] = $company['username'];
         $user_data['exp'] = time() + 604800;

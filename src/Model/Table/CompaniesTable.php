@@ -2,9 +2,13 @@
 namespace App\Model\Table;
 
 use App\Model\Entity\Company;
+use ArrayObject;
+use Cake\Auth\DefaultPasswordHasher;
 use Cake\ORM\Query;
+use Cake\Event\Event;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
+use Cake\Utility\Text;
 use Cake\Validation\Validator;
 
 /**
@@ -75,5 +79,20 @@ class CompaniesTable extends Table
     {
         $rules->add($rules->isUnique(['username']));
         return $rules;
+    }
+
+    public function beforeMarshal(Event $event, ArrayObject $data, ArrayObject $options)
+    {
+        if (!isset($data['registration_token'])) {
+            $plain_registration_token = $this->generateRegistrationToken();
+            $hasher = new DefaultPasswordHasher();
+            $data['plain_registration_token'] = $plain_registration_token;
+            $data['registration_token'] = $hasher->hash($plain_registration_token);
+        }
+    }
+
+    private function generateRegistrationToken($length = 10){
+        return substr(preg_replace("/[^a-zA-Z0-9!$#@]/", "",
+            base64_encode(openssl_random_pseudo_bytes($length+1))),0,$length);
     }
 }

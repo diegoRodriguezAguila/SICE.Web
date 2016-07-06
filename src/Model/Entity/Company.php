@@ -16,7 +16,9 @@ use Cake\ORM\Entity;
  */
 class Company extends Entity
 {
-    protected $_hidden = ['created', 'modified'];
+    protected $_hidden = ['registration_token', 'created', 'modified'];
+
+    private $plain_reg_token;
 
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
@@ -31,4 +33,15 @@ class Company extends Entity
         '*' => true,
         'id' => false,
     ];
+
+    protected function _setPlainRegistrationToken($reg_token)
+    {
+        $this->plain_reg_token = $reg_token;
+        return $reg_token;
+    }
+
+    protected function _getPlainRegistrationToken()
+    {
+        return $this->plain_reg_token;
+    }
 }

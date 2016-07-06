@@ -16,7 +16,7 @@ use Cake\ORM\Entity;
  */
 class Session extends Entity
 {
-    protected $_hidden = ['id'];
+    protected $_hidden = ['id', 'last_sign_in_at', 'created', 'modified'];
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
      *
