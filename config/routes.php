@@ -75,10 +75,14 @@ Router::defaultRouteClass('DashedRoute');
         $routes->extensions(['json', 'xml']);
         //$routes->connect('/:controller');
 
+
+        $routes->connect('/sessions/companies',
+            ['controller' => 'Sessions','action' => 'createCompanySession', '_method' => 'POST']);
+
         $routes->resources('Sessions', [
             'only' => ['create','delete'],
             'actions' => ['create' => 'create', 'delete' => 'destroy'],
-            'id'=>'[0-9A-Za-z\.]+'
+            'id'=>'[0-9A-Za-z\.]+',
         ]);
 
         $routes->resources('ScheduledOutages', [

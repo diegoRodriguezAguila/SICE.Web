@@ -9,8 +9,7 @@
 namespace App\BusinessLogic;
 
 use App\Model\Entity\Session;
-use Cake\Error\Debugger;
-use Cake\Log\Log;
+use Cake\Auth\DefaultPasswordHasher;
 use Cake\Network\Http\Client;
 use Cake\ORM\TableRegistry;
 use Cake\Utility\Security;
@@ -36,6 +35,28 @@ class SessionManager
             return false;
         $user_data['authentication_token'] = $response->json['authentication_token'];
         $user_data['sub'] = $response->json['username'];
+        $user_data['exp'] = time() + 604800;
+        $session = new Session(['username' => $user_data['sub'],
+            'authentication_token' =>
+                JWT::encode($user_data, Security::salt())]);
+        return $session;
+    }
+
+    /**
+     * Authenticates a company
+     * @param $data string of the request
+     * @return Session|boolean false if there was an error on authentication
+     */
+    public static function authenticateCompany($data)
+    {
+        $hasher = new DefaultPasswordHasher();
+        $companies = TableRegistry::get('Companies');
+        /** @noinspection PhpUndefinedFieldInspection */
+        $company = $companies->find()->where(['username' => $data->username,
+            'registration_token' => $hasher->hash($data->registration_token)])->first();
+        if ($company == null)
+            return false;
+        $user_data['sub'] = $company['username'];
         $user_data['exp'] = time() + 604800;
         $session = new Session(['username' => $user_data['sub'],
             'authentication_token' =>
