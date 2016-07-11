@@ -2,8 +2,6 @@
 namespace App\Controller\Api;
 
 use App\Controller\Api\AppController;
-use App\Model\Table\PowerPolesTable;
-use Cake\Error\Debugger;
 use Cake\ORM\TableRegistry;
 
 /**
@@ -14,11 +12,10 @@ use Cake\ORM\TableRegistry;
 class ScheduledOutagesController extends AppController
 {
     public $paginate = [
-        'limit' => 25,
+        'limit' => 10,
         'order' => [
-            'ScheduledOutages.start_date' => 'asc'
-        ],
-        'contain' => ['PowerPoles']
+            'ScheduledOutages.start_date' => 'desc'
+        ]
     ];
 
     /**
@@ -28,6 +25,9 @@ class ScheduledOutagesController extends AppController
      */
     public function index()
     {
+        if (isset($this->request->query['contain'])) {
+            $this->paginate['contain'] = $this->request->query['contain'];
+        }
         $this->set('data', $this->paginate($this->ScheduledOutages));
         $this->set('_serialize', ['data']);
     }
@@ -40,9 +40,11 @@ class ScheduledOutagesController extends AppController
      */
     public function view($id = null)
     {
-        $scheduledOutage = $this->ScheduledOutages->get($id, [
-            'contain' => ['PowerPoles']
-        ]);
+        $options = [];
+        if (isset($this->request->query['contain'])) {
+            $options['contain'] = $this->request->query['contain'];
+        }
+        $scheduledOutage = $this->ScheduledOutages->get($id, $options);
         $this->response->body(json_encode($scheduledOutage->jsonSerialize()));
         return $this->response;
     }
